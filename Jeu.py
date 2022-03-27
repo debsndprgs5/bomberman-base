@@ -71,8 +71,18 @@ def draw_walls():
             if tile >= 0:
                 #print(tile)
                 screen.blit(walls_img_list[tile-2], (x * tile_size, y * tile_size))
+
+player1animations = []
+player1animations.append(Animation("sprites_temp_sheet/player/run/player.run.face_",2))
+player1animations.append(Animation("sprites_temp_sheet/player/run/player.run.back_",2))
+player1animations.append(Animation("sprites_temp_sheet/player/run/player.run.right_",2))
+player1animations.append(Animation("sprites_temp_sheet/player/still/player.still.back_",2))
+player1animations.append(Animation("sprites_temp_sheet/player/still/player.still.face_",3))
+player1animations.append(Animation("sprites_temp_sheet/player/still/player.still.right_",2))
+
         
 player = Player("assets/joueur_bleu.png", 48, 48)
+player.setAnimations(player1animations)
 player2 = Player("assets/joueur_vert.png", 624, 624)
 players = [player, player2]
 

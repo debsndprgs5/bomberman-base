@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.x = 128*self.case_x
         self.y = 128*self.case_y
         self._motion = [0,0]
+        self.animations = []
 
     def movementKeyboard(self, pressed_keys, up, down, left, right):    #Déplace le joueur en fonction des touches clavier
         if (self.rect.x >= 48 and self.rect.x <= 624 and self.rect.y > 48) and not (self.rect.x >= 144 and self.rect.x < 192 and self.rect.y == 144) and not (self.rect.x > 48 and self.rect.x < 144 and self.rect.y == 192) and not (self.rect.x > 288 and self.rect.x < 384 and self.rect.y == 144) and not (self.rect.x > 480 and self.rect.x < 624 and self.rect.y == 144) and not (self.rect.x > 528 and self.rect.x < 624 and self.rect.y == 192) and not (self.rect.x > 240 and self.rect.x < 432 and self.rect.y == 240) and not (self.rect.x > 48 and self.rect.x < 240 and self.rect.y == 384) and not (self.rect.x > 432 and self.rect.x < 624 and self.rect.y == 384) and not (self.rect.x > 240 and self.rect.x < 432 and self.rect.y == 528) and not (self.rect.x > 48 and self.rect.x < 192 and self.rect.y == 624) and not (self.rect.x > 288 and self.rect.x < 384 and self.rect.y == 624) and not (self.rect.x > 480 and self.rect.x < 624 and self.rect.y == 624):  
@@ -59,7 +60,19 @@ class Player(pygame.sprite.Sprite):
 
     def setMotion(self, axis, value):   #_motion récupère l'axe et la valeur du stick
         self._motion[axis] = value
+    def setAnimations(self,animations):
+        for i in animations:
+            self.animations.append(i)
 
+
+
+class Animation:
+    def __init__(self,name,frameNumber):
+        self.name = name
+        self.frames = []
+        self.frameNumber = frameNumber
+        for i in range(frameNumber):
+            self.frames.append(pygame.image.load(name + str(i) +".png"))
 
 class Bomb:
     def __init__(self, bomb, perso1, perso2):
